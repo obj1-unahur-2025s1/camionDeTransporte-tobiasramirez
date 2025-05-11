@@ -44,7 +44,7 @@ object bateriaAntiaerea {
 object contenedor {
     const cosas = [knightRider, bateriaAntiaerea]
     method peso()= 100+cosas.sum({c=>c.peso()})
-    method peligrosidad() = self.elMasPeligroso().peligrosidad()
+    method peligrosidad() =  if (cosas.isEmpty()) 0 else (self.elMasPeligroso().peligrosidad())
     method elMasPeligroso() = cosas.max({c=>c.peligrosidad()})
     method agregarAlContenedor(algo) = cosas.add(algo)
     method sacarDelContenedor(algo) = cosas.remove(algo)
