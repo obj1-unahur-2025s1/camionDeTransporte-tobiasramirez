@@ -1,9 +1,42 @@
 import camion.*
+import cosas.*
 
-describe "group of test for camion" {
-
-  test "first test" {
-    assert.that(true)
+describe "camion" {
+  test "cargar el bumblebee como robot" {
+    bumblebee.transformarEnRobot()
+    camion.cargar(bumblebee)
+    assert.equals(30, bumblebee.peligrosidad())
   }
+  test "arena a granel con 150kg" {
+    arenaGranel.nuevoPeso(150)
+    camion.cargar(arenaGranel)
+    assert.equals(1150, camion.peso())
+  }
+  test "bateria antiaerea" {
+    bateriaAntiaerea.ponerMisiles()
+    camion.cargar(bateriaAntiaerea)
+    assert.equals(1300, camion.peso())
+  }
+  test "embalaje" {
+    paqueteLadrillos.cantidadLadrillos(80)
+    embalaje.embalar(paqueteLadrillos)
+    camion.cargar(embalaje)
+    assert.equals(1160, camion.peso())
+  }
+  test "puede circular en ruta de nivel 100, luego de cargarle a 
+  bumblebee como robot, la arena con 150kg, 
+  la bateria antiaerea con misiles y el embalaje con 80 ladrillos" {
 
+    bumblebee.transformarEnRobot()
+    arenaGranel.nuevoPeso(150)
+    bateriaAntiaerea.ponerMisiles()
+    paqueteLadrillos.cantidadLadrillos(80)
+    embalaje.embalar(paqueteLadrillos)
+    camion.cargar(arenaGranel)
+    camion.cargar(bumblebee)
+    camion.cargar(paqueteLadrillos)
+    camion.cargar(bateriaAntiaerea)
+    assert.that(camion.puedeCircularEnRutaDeNivel(100))
+  }
+    
 }

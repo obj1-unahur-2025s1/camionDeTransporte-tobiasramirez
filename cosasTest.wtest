@@ -1,9 +1,26 @@
 import cosas.*
+import camion.*
 
-describe "group of test for cosas" {
 
-  test "first test" {
-    assert.that(true)
+describe "test cosas" {
+
+  test "paquete de ladrillos" {
+    paqueteLadrillos.cantidadLadrillos(8)
+    assert.equals(16, paqueteLadrillos.peso())
   }
-
+  test "bateria antiaerea" {
+    bateriaAntiaerea.ponerMisiles()
+    assert.equals(300, bateriaAntiaerea.peso())
+    assert.equals(100, bateriaAntiaerea.peligrosidad())
+  }
+  test "embalaje" {
+    residuos.nuevoPeso(200)
+    embalaje.embalar(residuos)
+    assert.equals(embalaje.peso(), 200)
+  }
+  test "contenedor" {
+    contenedor.agregarAlContenedor(bumblebee)
+    contenedor.agregarAlContenedor(bateriaAntiaerea)
+    assert.equals(1100, contenedor.peso())
+  }
 }
