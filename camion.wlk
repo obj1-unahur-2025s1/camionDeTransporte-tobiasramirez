@@ -1,8 +1,8 @@
 import cosas.*
 object camion {
-    var carga = []
+    const carga = []
     method tara() = 1000
-    method peso() = carga.sum() + self.tara()
+    method peso() = carga.sum({c=>c.peso()}) + self.tara()
     method cargar(cosa) {
         carga.add(cosa)
 
@@ -23,5 +23,7 @@ object camion {
     method puedeCircularEnRutaDeNivel(nivel) = not self.estaExcedido() and  not self.algunaCosaSupera(nivel)
     method algunaCosaSupera(unaPeligrosidad) =  carga.any({c=>c.peligrosidad() > unaPeligrosidad})
         
+    method tieneAlgoQuePesaEntre(unPeso,otroPeso) = carga.any({c=>c.peso().between(unPeso, otroPeso)})
+    method laCosaMasPesada() = carga.max({c=>c.peso()})
     
 }
